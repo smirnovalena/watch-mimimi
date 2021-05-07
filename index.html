@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>transition</title>
+  <style>
+	body {
+	background: pink;
+	overflow: hidden;
+	margin: 0;
+	}
+	
+	.card {
+	width: 150px;
+    margin: 0;
+	position: relative;
+	top: -14.0em;
+	right: -70em;
+	display: block; 
+	box-shadow: 3px 10px 40px #F8F8FF;
+	-webkit-transition: top 0.5s ease-out 0.3s;
+    -moz-transition: top 0.5s ease-out 0.3s;
+    -o-transition: top 0.5s ease-out 0.3s;
+    transition: top 0.5s ease-out 0.3s;
+	}
+	
+	.group .button {
+  background-color: cyan;
+  border: 2px solid white;
+  color: white;
+  margin: 0;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  padding-left: 56px;
+  padding-right: 8px;
+  text-decoration: none;
+  text-shadow: 1px 1px teal;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: right;
+  cursor: pointer;
+  width: 150px;
+  display: block;
+	}
+  
+p.button {
+margin: 0;
+padding: 15px 0px;
+width: 146px;
+text-align: center;
+font-size: 18px;
+background-color: cyan;
+border: 2px solid white;
+color: white;
+font-weight: bold;
+text-decoration: none;
+text-shadow: 1px 1px teal;
+border-radius: 0 0 8px 8px;
+cursor: pointer;
+}
+
+.card:hover { 
+   position: relative;
+   top: 0;
+   }
+   
+.group .button:hover {
+	text-decoration: solid underline teal;
+	background-color: springgreen;
+	color: teal;
+	text-shadow: 2px 1px skyblue;
+}
+
+.group .button:not(:last-child) {
+  border-bottom: none;
+}
+   
+.group .button:after {
+outline: none;
+border: none;
+text-decoration: solid underline white;
+}
+
+.star {
+	position: absolute;
+	width: 4px;
+	height: 4px;
+	background-color: ghostwhite;
+	border-radius: 3px;
+	box-shadow: 0px 0px 3px 4px white;
+	animation: star-scale infinite alternate;
+	}
+	
+	@keyframes star-scale {
+		0% { transform: scale(1); opacity: 1; }
+		25% { transform: scale(.5); opacity: .5; }
+		50% { transform: scale(1); opacity: 1; }
+		75% { transform: scale(.2); opacity: .2; }
+		100% { transform: scale(.8); opacity: .8; }	
+	}
+	
+#clock {
+	font-weight: bold;
+	text-align: center;
+	font-size: 6em;
+}
+	
+	</style>
+  </head>
+ <body>
+ <div class="card">
+  <div class="group">
+   <button class="button">Главная</button>
+   <button class="button">О нас</button>
+   <button class="button">О Вас</button>
+   <button class="button">Контакты</button> 
+   </div>
+   <p class="button">Click me, Kitty!</p> 
+  </div>
+  
+  <script>
+	function random(x, y) {
+		return (x + (Math.random() * (y - x)));
+	}
+	for (var i = 0; i < 100; i++) {
+		document.body.innerHTML += '<div class="star" style=" animation-duration: ' + random(5,15) + 's; top: ' + random(0, 100) + '%; left: ' + random(0, 100) + '%;"></div>';
+	}
+  </script>
+  <div id="clock"></div>
+  <script>
+	window.onload = function() {
+		window.setInterval(function() {
+			 var date = new Date();
+			 var hours = date.getHours();
+			 var minutes = date.getMinutes();
+			 var seconds = date.getSeconds();
+			 if (hours < 10) hours = "0" + hours;
+			 if (minutes < 10) minutes = "0" + minutes;
+			 if (seconds < 10) seconds = "0" + seconds;
+			 var clock = hours + ":" + minutes + ":" + seconds;
+			 document.getElementById("clock").innerHTML = clock;
+		}
+		);
+	}
+	
+  </script>
+ </body>
+</html>
